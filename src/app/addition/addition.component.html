@@ -1,0 +1,65 @@
+<div class="main-content">
+  <h2> Addition d’un restaurant </h2>
+  <div class="content">
+    <h4>Recette</h4>
+
+    <mat-form-field>
+      <mat-label>Recette</mat-label>
+      <mat-select (selectionChange)="onChangeRecipe($event)">
+        <mat-option *ngFor="let recipe  of recipes" [value]="recipe.key">
+          {{recipe.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-group-parents" *ngFor="let ingredient of recipe.ingredients; let last='last'; let i=index;">
+
+      <mat-form-field>
+        <input type="text" placeholder="Ingrédient" required matInput name="ingredient" [(ngModel)]="ingredient.value">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number" placeholder="Prix (Ar) " matInput
+          onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : (event.charCode >= 48 && event.charCode <= 57) || event.charCode === 44"
+          (input)="setIngredientTotalPrice($event.target.value)" min="1" [required]=true [(ngModel)]="ingredient.price">
+      </mat-form-field>
+
+      <div class="concept-btn-right">
+        <button class="btn" mat-icon-button color="accent" type="button" (click)="addIngredient()" *ngIf="last">
+          <img src="../../assets/images/icons-positive.png" matTooltip="Ajouter" style="width: 18px;">
+        </button>
+        <button class="btn" type="button" *ngIf="!last" (click)="deleteIngredient(i)">
+          <img src="../../assets/images/icons-negative.png" matTooltip="Supprimer" style="width: 23px;">
+        </button>
+      </div>
+
+    </div>
+    <span class="total">Total Recette : </span><span>{{recipeTotalPrice | number:'1.0-2':'fr' }} Ar</span>
+  </div>
+
+  <div class="content">
+    <h4>Boisson</h4>
+    <div class="form-group-parents" *ngFor="let drink of drinks; let last='last'; let i=index;">
+
+      <mat-form-field>
+        <input type="text" placeholder="Boisson" required matInput name="drink" [(ngModel)]="drink.value">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number" placeholder="Prix (Ar) " matInput
+          onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : (event.charCode >= 48 && event.charCode <= 57) || event.charCode === 44"
+          (input)="setDrinkTotalPrice($event.target.value)" min="1" [required]=true [(ngModel)]="drink.price">
+      </mat-form-field>
+
+      <div class="concept-btn-right">
+        <button class="btn" type="button" (click)="addDrink()" *ngIf="last">
+          <img src="../../assets/images/icons-positive.png" matTooltip="Ajouter" style="width: 18px;">
+        </button>
+        <button class="btn" type="button" *ngIf="!last" (click)="deleteDrink(i)">
+          <img src="../../assets/images/icons-negative.png" matTooltip="Retirer" style="width: 23px;">
+        </button>
+      </div>
+    </div>
+
+    <span class="total">Total Boisson : </span><span>{{drinkTotalPrice | number:'1.0-2':'fr'}} Ar</span>
+  </div>
+  <span class="total">Addition total : </span><span> {{totalPrice | number:'1.0-2':'fr'}} Ar {{discountMessage}}</span>
+</div>

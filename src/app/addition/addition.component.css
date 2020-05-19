@@ -1,0 +1,55 @@
+.concept-btn-right{
+  position: relative;
+}
+
+.concept-btn-right button{
+  top: 50%;
+  right: 50%;
+  position: absolute;
+}
+
+h4{
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #739D42;
+  /* padding-left: 50px; */
+}
+
+.form-group-parents {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  margin-left: 40px;
+  width: 30%;
+}
+
+.main-content {
+  margin-left: 50px;
+}
+
+.content{
+  margin-bottom: 30px;
+}
+
+.btn{
+  background-color: transparent;
+  border: none;
+}
+
+h2{
+  font-family: 'Poppins';
+  color: rgb(66, 90, 157);
+  padding-left: 125px;
+}
+
+.total{
+  font-family: 'Poppins';
+  font-size: large;
+  color: rgb(66, 90, 157);
+}
+
+
+
