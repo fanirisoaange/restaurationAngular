@@ -15,6 +15,7 @@ export class AdditionComponent implements OnInit {
   totalPrice = 0;
   DISCOUNT = 20;
   discountMessage = '';
+  recipeFilterKey: Int16Array;
 
   constructor() { }
 
@@ -60,6 +61,7 @@ export class AdditionComponent implements OnInit {
       }
     ];
     this.recipe = this.recipes[0];
+    this.recipeFilterKey = this.recipe.key;
   }
 
   initDrink() {
@@ -89,7 +91,7 @@ export class AdditionComponent implements OnInit {
 
   setIngredientTotalPrice() {
     this.recipeTotalPrice = this.recipes.find(recipe => recipe.key === this.recipe.key).ingredients
-    .reduce((accumulateur, current) => accumulateur + parseInt(current.price, 10), 0);
+      .reduce((accumulateur, current) => accumulateur + +current.price, 0);
     this.setTotalPrice();
   }
 
@@ -109,13 +111,13 @@ export class AdditionComponent implements OnInit {
 
   setDrinkTotalPrice(): void {
     this.drinkTotalPrice = this.drinks
-    .reduce((accumulateur, current) => accumulateur + parseInt(current.price, 10), 0);
+      .reduce((accumulateur, current) => accumulateur + +current.price, 0);
     this.setTotalPrice();
   }
 
   setTotalPrice() {
-    const total = this.drinkTotalPrice + this.recipeTotalPrice ;
-    this.totalPrice = this.drinkTotalPrice <= 100000 ? total : (total - (total * this.DISCOUNT / 100 ));
+    const total = this.drinkTotalPrice + this.recipeTotalPrice;
+    this.totalPrice = this.drinkTotalPrice <= 100000 ? total : (total - (total * this.DISCOUNT / 100));
     this.discountMessage = this.drinkTotalPrice <= 100000 ? `` : `(Remise de ${this.DISCOUNT}%)`;
   }
 

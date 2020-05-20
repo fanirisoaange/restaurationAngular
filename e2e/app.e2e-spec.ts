@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('restuuu App', () => {
+describe('Addition App', () => {
   let page: AppPage;
 
   beforeEach(() => {

@@ -5,8 +5,8 @@
 
     <mat-form-field>
       <mat-label>Recette</mat-label>
-      <mat-select (selectionChange)="onChangeRecipe($event)">
-        <mat-option *ngFor="let recipe  of recipes" [value]="recipe.key">
+      <mat-select (selectionChange)="onChangeRecipe($event)" [(ngModel)]="recipeFilterKey">
+        <mat-option *ngFor="let recipe of recipes" [value]="recipe.key">
           {{recipe.value}}
         </mat-option>
       </mat-select>
